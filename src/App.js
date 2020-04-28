@@ -10,7 +10,6 @@ function App() {
   const [timeRemaining, setTimeRemaining] = useState(0);
   const [correctWords, setCorrectWords] = useState([]);
 
-
   const handleChange = (event) => {
     const { value } = event.target;
     setText(value);
@@ -27,7 +26,7 @@ function App() {
 
   useEffect(() => {
     if (timeRemaining <= 0) {
-      setCorrectWords(getCorrectWords(words));
+      calcCorrectWords(words);
       console.log(correctWords.length);
       return;
     }
@@ -40,24 +39,20 @@ function App() {
   const startGame = () => {
     setTimeRemaining(STARTING_TIME);
   };
-  
 
   const words = ['dog', 'cat'];
 
-  const getCorrectWords = (words) => {
-    let correctWords = [];
+  const calcCorrectWords = (words) => {
+    let correctWordsArray = [];
     words.forEach((word) => {
       client.define(word).then((result) => {
         if (result) {
-          correctWords.push(word);
+          correctWordsArray.push(word);
         }
       });
     });
-    return correctWords;
+    setCorrectWords(correctWordsArray);
   };
-
- 
-
 
   return (
     <div className='App'>
