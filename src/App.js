@@ -56,7 +56,7 @@ function App() {
         if (result) {
           correctWordsArray.push(word);
         }
-      });
+      }).catch(error => console.log("Not a valid word"));
     });
     return correctWordsArray;
   };
