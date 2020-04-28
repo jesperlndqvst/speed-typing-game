@@ -7,8 +7,9 @@ function App() {
 
   const [text, setText] = useState('');
   const [wordCount, setWordCount] = useState(0);
-  const [timeRemaining, setTimeRemaining] = useState(0);
+  const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME);
   const [correctWords, setCorrectWords] = useState([]);
+  const [isTimeRunning, setIsTimeRunning] = useState(false);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -21,26 +22,32 @@ function App() {
       .trim()
       .split(' ')
       .filter((word) => word !== '');
-    setWordCount(wordsArray.length);
+    return wordsArray;
+  };
+
+  const startGame = () => {
+    setIsTimeRunning(true);
+    setTimeRemaining(STARTING_TIME);
+    setText('');
+  };
+
+  const endGame = () => {
+    setTimeRemaining(false);
+    const words = calculateWords(text);
+    setWordCount(words);
+    setCorrectWords(calcCorrectWords(words));
   };
 
   useEffect(() => {
-    if (timeRemaining <= 0) {
-      calcCorrectWords(words);
-      console.log(correctWords.length);
-      return;
+    if (isTimeRunning && timeRemaining > 0) {
+      setTimeout(() => {
+        setTimeRemaining((time) => time - 1);
+      }, 1000);
+    } else if (timeRemaining === 0) {
+      endGame();
     }
-
-    setTimeout(() => {
-      setTimeRemaining((time) => time - 1);
-    }, 1000);
-  }, [timeRemaining]);
-
-  const startGame = () => {
-    setTimeRemaining(STARTING_TIME);
-  };
-
-  const words = ['dog', 'cat'];
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [timeRemaining, isTimeRunning]);
 
   const calcCorrectWords = (words) => {
     let correctWordsArray = [];
@@ -51,16 +58,25 @@ function App() {
         }
       });
     });
-    setCorrectWords(correctWordsArray);
+    return correctWordsArray;
   };
 
   return (
     <div className='App'>
-      <textarea onChange={handleChange} value={text} />
+      <textarea 
+      onChange={handleChange} 
+      value={text}
+      disabled={!isTimeRunning}
+      />
       <h4>Time remaining: {timeRemaining}</h4>
-      <p>Word Count: {wordCount}</p>
-      <button onClick={startGame}>Start Game</button>
-      <p>{correctWords}</p>
+      <p>Word Count: {wordCount.length}</p>
+      <p>Correct word count: {correctWords.length}</p>
+      <button
+       onClick={startGame}
+       disabled={isTimeRunning}
+       >
+         Start Game
+         </button>
     </div>
   );
 }
