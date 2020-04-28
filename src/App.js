@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+import client from './owlbot';
 
 function App() {
   const STARTING_TIME = 5;
@@ -7,7 +8,8 @@ function App() {
   const [text, setText] = useState('');
   const [wordCount, setWordCount] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(0);
-  const [isGameStarted, setIsGameStarted] = useState(false);
+  const [correctWords, setCorrectWords] = useState([]);
+
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -25,9 +27,10 @@ function App() {
 
   useEffect(() => {
     if (timeRemaining <= 0) {
-      setIsGameStarted(false)
+      setCorrectWords(getCorrectWords(words));
+      console.log(correctWords.length);
       return;
-    };
+    }
 
     setTimeout(() => {
       setTimeRemaining((time) => time - 1);
@@ -35,9 +38,26 @@ function App() {
   }, [timeRemaining]);
 
   const startGame = () => {
-    setIsGameStarted(true);
     setTimeRemaining(STARTING_TIME);
   };
+  
+
+  const words = ['dog', 'cat'];
+
+  const getCorrectWords = (words) => {
+    let correctWords = [];
+    words.forEach((word) => {
+      client.define(word).then((result) => {
+        if (result) {
+          correctWords.push(word);
+        }
+      });
+    });
+    return correctWords;
+  };
+
+ 
+
 
   return (
     <div className='App'>
@@ -45,6 +65,7 @@ function App() {
       <h4>Time remaining: {timeRemaining}</h4>
       <p>Word Count: {wordCount}</p>
       <button onClick={startGame}>Start Game</button>
+      <p>{correctWords}</p>
     </div>
   );
 }
