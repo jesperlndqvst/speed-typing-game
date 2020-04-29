@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import client from './owlbot';
+import ScoreText from './components/ScoreText';
+import Button from './components/Button';
+import ResultCard from './components/ResultCard';
 
 function App() {
   const STARTING_TIME = 5;
@@ -52,14 +55,25 @@ function App() {
   const calcCorrectWords = async (words) => {
     for (let i = 0; i < words.length; i++) {
       try {
-        const result = await client.define(words[i]);
-        console.log(result);
-        setCorrectWords((correctWords) => [...correctWords, words[i]]);
+        const response = await client.define(words[i]);
+        setCorrectWords((correctWords) => [...correctWords, response]);
       } catch (error) {
-        console.log(error);
+        console.log('Invalid word');
       }
     }
   };
+
+  const resultComponents = correctWords.map((item) => (
+    <ResultCard
+      key={item.word}
+      word={item.word}
+      pronunciation={item.pronunciation}
+      type={item.definitions[0].type}
+      definition={item.definitions[0].definition}
+      example={item.definitions[0].example}
+      image={item.definitions[0].image_url}
+    />
+  ));
 
   return (
     <div className='App'>
@@ -69,11 +83,14 @@ function App() {
         disabled={!isTimeRunning}
       />
       <h4>Time remaining: {timeRemaining}</h4>
-      <p>Word Count: {wordCount.length}</p>
-      <p>Correct word count: {correctWords.length}</p>
-      <button onClick={startGame} disabled={isTimeRunning}>
-        Start Game
-      </button>
+      <ScoreText text='Word Count: ' value={wordCount.length} />
+      <ScoreText text='Correct Word Count: ' value={correctWords.length} />
+      <Button
+        text='Start Game!'
+        handleClick={startGame}
+        disabled={isTimeRunning}
+      />
+      {resultComponents}
     </div>
   );
 }
