@@ -65,7 +65,7 @@ function App() {
 
   const resultComponents = correctWords.map((item) => (
     <ResultCard
-      key={item.word}
+      key={item.definitions[0].definition}
       word={item.word}
       pronunciation={item.pronunciation}
       type={item.definitions[0].type}
