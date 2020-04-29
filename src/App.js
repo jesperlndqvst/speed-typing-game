@@ -35,7 +35,7 @@ function App() {
     setTimeRemaining(false);
     const words = calculateWords(text);
     setWordCount(words);
-    setCorrectWords(calcCorrectWords(words));
+    calcCorrectWords(words);
   };
 
   useEffect(() => {
@@ -49,34 +49,30 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeRemaining, isTimeRunning]);
 
-  const calcCorrectWords = (words) => {
+  const calcCorrectWords = async (words) => {
     let correctWordsArray = [];
-    words.forEach((word) => {
-      client.define(word).then((result) => {
-        if (result) {
-          correctWordsArray.push(word);
-        }
-      }).catch(error => console.log("Not a valid word"));
-    });
-    return correctWordsArray;
+    for (let i = 0; i < words.length; i++) {
+      const result = await client.define(words[i]);
+      if (result) {
+        correctWordsArray.push(words[i]);
+      }
+    }
+    setCorrectWords(correctWordsArray);
   };
 
   return (
     <div className='App'>
-      <textarea 
-      onChange={handleChange} 
-      value={text}
-      disabled={!isTimeRunning}
+      <textarea
+        onChange={handleChange}
+        value={text}
+        disabled={!isTimeRunning}
       />
       <h4>Time remaining: {timeRemaining}</h4>
       <p>Word Count: {wordCount.length}</p>
       <p>Correct word count: {correctWords.length}</p>
-      <button
-       onClick={startGame}
-       disabled={isTimeRunning}
-       >
-         Start Game
-         </button>
+      <button onClick={startGame} disabled={isTimeRunning}>
+        Start Game
+      </button>
     </div>
   );
 }
