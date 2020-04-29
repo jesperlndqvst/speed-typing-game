@@ -51,10 +51,12 @@ function App() {
 
   const calcCorrectWords = async (words) => {
     for (let i = 0; i < words.length; i++) {
-      const result = await client.define(words[i]);
-      if (result) {
+      try {
+        const result = await client.define(words[i]);
         console.log(result);
-        setCorrectWords(correctWords => [...correctWords, words[i]]);
+        setCorrectWords((correctWords) => [...correctWords, words[i]]);
+      } catch (error) {
+        console.log(error);
       }
     }
   };
