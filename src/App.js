@@ -34,22 +34,23 @@ function App() {
     setText('');
   };
 
-  const endGame = () => {
-    setTimeRemaining(false);
-    const words = calculateWords(text);
-    setWordCount(words);
-    calcCorrectWords(words);
-  };
+  useEffect(() => {
+    if (isTimeRunning === false) {
+      const words = calculateWords(text);
+      setWordCount(words);
+      calcCorrectWords(words);
+    }
+  }, [isTimeRunning, text]);
 
   useEffect(() => {
     if (isTimeRunning && timeRemaining > 0) {
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setTimeRemaining((time) => time - 1);
       }, 1000);
+      return () => clearInterval(timer);
     } else if (timeRemaining === 0) {
-      endGame();
+      setIsTimeRunning(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeRemaining, isTimeRunning]);
 
   const calcCorrectWords = async (words) => {
