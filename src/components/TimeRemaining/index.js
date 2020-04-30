@@ -1,13 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
+
+const TimeRemainingStyled = styled.h4`
+  font-size: 24px;
+  padding: 20px 0;
+`;
 
 const TimeRemaining = (props) => {
-return <h4>{props.text} {props.value}</h4>;
+  return (
+    <TimeRemainingStyled>
+      {props.text} {props.value}
+    </TimeRemainingStyled>
+  );
 };
 
 TimeRemaining.propTypes = {
   text: PropTypes.string,
-  value: PropTypes.number
+  value: PropTypes.number,
 };
 
 export default TimeRemaining;
