@@ -7,4 +7,5 @@ textarea {
     outline: none;
     height: 200px;
     padding: 10px;
+    resize: none;
 }

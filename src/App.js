@@ -4,6 +4,8 @@ import client from './owlbot';
 import ScoreText from './components/ScoreText';
 import Button from './components/Button';
 import ResultCard from './components/ResultCard';
+import TimeRemaining from './components/TimeRemaining';
+import InputField from './components/InputField';
 
 function App() {
   const STARTING_TIME = 5;
@@ -78,12 +80,11 @@ function App() {
 
   return (
     <div className='App'>
-      <textarea
+      <InputField 
         onChange={handleChange}
         value={text}
-        disabled={!isTimeRunning}
-      />
-      <h4>Time remaining: {timeRemaining}</h4>
+        disabled={!isTimeRunning}/>
+      <TimeRemaining text='Time Remaining: ' value={timeRemaining} />
       <ScoreText text='Word Count: ' value={wordCount.length} />
       <ScoreText text='Correct Word Count: ' value={correctWords.length} />
       <Button
