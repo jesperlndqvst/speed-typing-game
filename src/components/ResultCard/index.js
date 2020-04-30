@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ResultCard = (props) => {
   return (
@@ -11,6 +12,10 @@ const ResultCard = (props) => {
       <img src={props.image} alt={props.word} />
     </div>
   );
+};
+
+ResultCard.propTypes = {
+  children: PropTypes.string,
 };
 
 export default ResultCard;

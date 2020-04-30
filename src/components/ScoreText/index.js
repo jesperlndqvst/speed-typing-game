@@ -12,4 +12,5 @@ ScoreText.propTypes = {
   value: PropTypes.number
 };
 
+
 export default ScoreText;
