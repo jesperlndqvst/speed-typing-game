@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const TimeRemainingStyled = styled.h4`
   font-size: 24px;
-  padding: 20px 0;
 `;
 
 const TimeRemaining = (props) => {

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import client from './owlbot';
-import ScoreText from './components/ScoreText';
-import Button from './components/Button';
-import ResultCard from './components/ResultCard';
-import TimeRemaining from './components/TimeRemaining';
 import InputField from './components/InputField';
+import ControlPanel from './components/ControlPanel'
+import ResultCard from './components/ResultCard';
 
 function App() {
   const STARTING_TIME = 5;
@@ -84,11 +82,14 @@ function App() {
         onChange={handleChange}
         value={text}
         disabled={!isTimeRunning}
+      />  
+      <ControlPanel 
+      timeRemaining={timeRemaining} 
+      wordCount={wordCount.length}
+      correctWords={correctWords.length}
+      startGame={startGame}
+      isTimeRunning={isTimeRunning}
       />
-      <TimeRemaining text='Time Remaining: ' value={timeRemaining} />
-      <ScoreText text='Word Count: ' value={wordCount.length} />
-      <ScoreText text='Correct Word Count: ' value={correctWords.length} />
-      <Button text='Start!' handleClick={startGame} disabled={isTimeRunning} />
       {resultComponents}
     </div>
   );
