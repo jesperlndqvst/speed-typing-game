@@ -80,18 +80,15 @@ function App() {
 
   return (
     <div className='App'>
-      <InputField 
+      <InputField
         onChange={handleChange}
         value={text}
-        disabled={!isTimeRunning}/>
+        disabled={!isTimeRunning}
+      />
       <TimeRemaining text='Time Remaining: ' value={timeRemaining} />
       <ScoreText text='Word Count: ' value={wordCount.length} />
       <ScoreText text='Correct Word Count: ' value={correctWords.length} />
-      <Button
-        text='Start Game!'
-        handleClick={startGame}
-        disabled={isTimeRunning}
-      />
+      <Button text='Start!' handleClick={startGame} disabled={isTimeRunning} />
       {resultComponents}
     </div>
   );

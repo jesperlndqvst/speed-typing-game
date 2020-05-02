@@ -6,12 +6,13 @@ const InputFieldStyled = styled.textarea`
   font-family: sans-serif;
   font-size: 24px;
   border: 3px solid black;
-  width: 90%;
   margin: 0 auto;
   outline: none;
+  width: 100%;
   height: 400px;
   margin-top: 40px;
   resize: none;
+  padding: 20px;
 `;
 
 const InputField = (props) => {
