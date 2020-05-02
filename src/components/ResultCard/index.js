@@ -3,26 +3,24 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const ResultCardStyled = styled.div`
-  background-color: light-grey;
-  text-align: left;
-  border: 3px solid black;
-  border-radius: 8px;
-  padding: 10px 20px;
-  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-light-grey);
+  padding: 20px;
+  margin: 20px auto;
 
   h4 {
     font-size: 24px;
   }
 
-  .top,
-  .bottom {
+  .left,
+  .right {
     padding: 10px 0;
   }
 
-  .bottom {
-    border-top: 1px solid black;
-    display: flex;
-    height: 150px;
+  .left {
+    width: 70%;
   }
 
   .pronunciation {
@@ -34,6 +32,7 @@ const ResultCardStyled = styled.div`
   }
 
   img {
+    margin: auto;
     min-width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -43,18 +42,15 @@ const ResultCardStyled = styled.div`
 `;
 
 const ResultCard = (props) => {
-
   return (
     <ResultCardStyled>
-      <div className='top'>
+      <div className='left'>
         <h4 className='word'>{props.word}</h4>
         <p className='pronunciation'>{props.pronunciation}</p>
+        <p className='type'>{props.type}</p>
+        <p className='definition'>{props.definition}</p>
       </div>
-      <div className='bottom'>
-        <div>
-          <p className='type'>{props.type}</p>
-          <p className='definition'>{props.definition}</p>
-        </div>
+      <div className='right'>
         {props.image && <img src={props.image} alt={props.word} />}
       </div>
     </ResultCardStyled>

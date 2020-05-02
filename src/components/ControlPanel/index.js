@@ -5,13 +5,12 @@ import TimeRemaining from '../TimeRemaining';
 import ScoreText from '../ScoreText';
 import Button from '../Button';
 
-
 const ControlPanelStyled = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
   text-transform: uppercase;
-  padding: 20px 0;
+  padding: 40px 0;
 `;
 
 const ControlPanel = (props) => {
@@ -32,11 +31,11 @@ const ControlPanel = (props) => {
 };
 
 ControlPanel.propTypes = {
-    timeRemaining: PropTypes.number,
-    wordCount: PropTypes.number,
-    correctWords: PropTypes.number,
-    startGame: PropTypes.func,
-    isTimeRunning: PropTypes.bool
+  timeRemaining: PropTypes.number,
+  wordCount: PropTypes.number,
+  correctWords: PropTypes.number,
+  startGame: PropTypes.func,
+  isTimeRunning: PropTypes.bool,
 };
 
 export default ControlPanel;
