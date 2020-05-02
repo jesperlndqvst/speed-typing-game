@@ -34,14 +34,16 @@ const ResultCardStyled = styled.div`
   }
 
   img {
-    width: 120px;
+    min-width: 120px;
     height: 120px;
     border-radius: 50%;
+    object-fit: cover;
     margin-left: 40px;
   }
 `;
 
 const ResultCard = (props) => {
+
   return (
     <ResultCardStyled>
       <div className='top'>
@@ -53,7 +55,7 @@ const ResultCard = (props) => {
           <p className='type'>{props.type}</p>
           <p className='definition'>{props.definition}</p>
         </div>
-        <img src={props.image} alt={props.word} />
+        {props.image && <img src={props.image} alt={props.word} />}
       </div>
     </ResultCardStyled>
   );

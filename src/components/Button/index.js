@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const ButtonStyled = styled.button`
-  height: 75px;
+  height: 65px;
   width: 200px;
   background-color: red;
+  color: #fff;
   font-size: 36px;
   text-transform: uppercase;
   border: none;
-  border-radius: 30px;
   cursor: pointer;
   user-select: none;
   outline: none;
