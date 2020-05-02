@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const HeaderStyled = styled.h1`
   color: var(--color-primary);
-  padding: 20px 0;
+  padding: 40px 0;
   text-transform: uppercase;
   text-decoration: underline;
 `;
