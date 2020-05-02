@@ -10,7 +10,6 @@ const InputFieldStyled = styled.textarea`
   outline: none;
   width: 100%;
   height: 400px;
-  margin-top: 40px;
   resize: none;
   padding: 10px 20px;
 `;

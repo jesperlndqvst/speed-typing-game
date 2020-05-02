@@ -38,6 +38,7 @@ const ResultCardStyled = styled.div`
     border-radius: 50%;
     object-fit: cover;
     margin-left: 40px;
+    filter: grayscale(100%);
   }
 `;
 

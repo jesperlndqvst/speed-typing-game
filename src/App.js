@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import client from './owlbot';
+import Header from './components/Header';
 import InputField from './components/InputField';
-import ControlPanel from './components/ControlPanel'
+import ControlPanel from './components/ControlPanel';
 import ResultCard from './components/ResultCard';
 
 function App() {
@@ -78,17 +79,18 @@ function App() {
 
   return (
     <div className='App'>
+      <Header text='Speed Typer Explainer Test' />
       <InputField
         onChange={handleChange}
         value={text}
         disabled={!isTimeRunning}
-      />  
-      <ControlPanel 
-      timeRemaining={timeRemaining} 
-      wordCount={wordCount.length}
-      correctWords={correctWords.length}
-      startGame={startGame}
-      isTimeRunning={isTimeRunning}
+      />
+      <ControlPanel
+        timeRemaining={timeRemaining}
+        wordCount={wordCount.length}
+        correctWords={correctWords.length}
+        startGame={startGame}
+        isTimeRunning={isTimeRunning}
       />
       {resultComponents}
     </div>

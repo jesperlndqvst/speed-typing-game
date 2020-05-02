@@ -10,7 +10,7 @@ const ControlPanelStyled = styled.div`
   justify-content: space-around;
   align-items: center;
   text-transform: uppercase;
-  padding: 40px 0;
+  padding: 30px 0;
 `;
 
 const ControlPanel = (props) => {
