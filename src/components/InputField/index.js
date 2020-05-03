@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -14,15 +14,16 @@ const InputFieldStyled = styled.textarea`
   padding: 10px 20px;
 `;
 
-const InputField = (props) => {
+const InputField = forwardRef((props, ref) => {
   return (
     <InputFieldStyled
+      ref={ref}
       onChange={props.onChange}
       value={props.value}
       disabled={props.disabled}
     />
   );
-};
+});
 
 InputField.propTypes = {
   onChange: PropTypes.func,

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
 import client from './owlbot';
 import Header from './components/Header';
@@ -7,13 +7,14 @@ import ControlPanel from './components/ControlPanel';
 import ResultCard from './components/ResultCard';
 
 function App() {
-  const STARTING_TIME = 5;
+  const STARTING_TIME = 15;
 
   const [text, setText] = useState('');
   const [wordCount, setWordCount] = useState(0);
   const [timeRemaining, setTimeRemaining] = useState(STARTING_TIME);
   const [correctWords, setCorrectWords] = useState([]);
   const [isTimeRunning, setIsTimeRunning] = useState(false);
+  const inputRef = useRef(null);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -33,6 +34,8 @@ function App() {
     setIsTimeRunning(true);
     setTimeRemaining(STARTING_TIME);
     setText('');
+    inputRef.current.disabled = false;
+    inputRef.current.focus();
   };
 
   useEffect(() => {
@@ -79,8 +82,9 @@ function App() {
 
   return (
     <div className='App'>
-      <Header text='Speed Typer Explainer Test' />
+      <Header text='Speed Type Test Explained' />
       <InputField
+        ref={inputRef}
         onChange={handleChange}
         value={text}
         disabled={!isTimeRunning}
