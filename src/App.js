@@ -34,6 +34,8 @@ function App() {
     setIsTimeRunning(true);
     setTimeRemaining(STARTING_TIME);
     setText('');
+    setWordCount(0);
+    setCorrectWords([]);
     inputRef.current.disabled = false;
     inputRef.current.focus();
   };
