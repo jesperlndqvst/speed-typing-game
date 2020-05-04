@@ -1,4 +1,4 @@
-<img src="https://media.giphy.com/media/B1uajA01vvL91Urtsp/source.gif" width="100%">
+<img src="https://media.giphy.com/media/fQZX2aoRC1Tqw/giphy.gif" width="100%">
 
 # speed-typing-game
 A first small school assignment in React. I chose to develop a speed typing game where the user gets the result of every word that is correct in dictionary form. It may not be the most useful thing ever developed, but for me it was a great way to learn the basics of React.
@@ -23,10 +23,7 @@ A first small school assignment in React. I chose to develop a speed typing game
 
 ## How to use it
 
-Click this link a start playing:
-```
-$ git clone https://github.com/jesperlndqvst/picture-this.git
-```
+Click this to start playing: https://speed-typing-test.netlify.app/
 
 ## Preview
 <img src="https://i.imgur.com/i1SRj8C.png" width="33%" /> <img src="https://i.imgur.com/3xoXMre.png" width="33%" /> <img src="https://i.imgur.com/C0OsGZy.png" width="33%">
