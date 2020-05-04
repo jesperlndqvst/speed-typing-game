@@ -26,7 +26,7 @@ A first small school assignment in React. I chose to develop a speed typing game
 Click this to start playing: https://speed-typing-test.netlify.app/
 
 ## Preview
-<img src="https://i.imgur.com/i1SRj8C.png" width="33%" /> <img src="https://i.imgur.com/3xoXMre.png" width="33%" /> <img src="https://i.imgur.com/C0OsGZy.png" width="33%">
+<img src="https://i.imgur.com/LI7DGkd.png" width="100%" />
 
 ## License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
